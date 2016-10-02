@@ -3,25 +3,31 @@ package org.usfirst.frc.team3130.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3130.robot.Robot;
+import org.usfirst.frc.team3130.robot.OI;
 import org.usfirst.frc.team3130.robot.subsystems.Chassis;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class DefaultDrive extends Command {
 
-    public ExampleCommand() {
-        // Use requires() here to declare subsystem dependencies
+    public DefaultDrive() {
         requires(Chassis.GetInstance());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Chassis.ReleaseAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double moveSpeed = -OI.stickL.getY();
+    	double turnSpeed = -OI.stickR.getX();
+    	double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
+    	
+    	//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
+    	Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

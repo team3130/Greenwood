@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 
 import org.usfirst.frc.team3130.robot.RobotMap;
+import org.usfirst.frc.team3130.robot.subsystems.Chassis;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -30,10 +31,19 @@ class POVTrigger extends Trigger
 }
 
 public class OI {
+	
+	//Instance Handling
+    private static OI m_pInstance;
+    public static OI GetInstance()
+    {
+    	if(m_pInstance == null) m_pInstance = new OI();
+    	return m_pInstance;
+    }
+	
 	//Create Joysticks
-	private Joystick stickL = new Joystick(0);
-	private Joystick stickR = new Joystick(1);
-	private Joystick gamepad = new Joystick(2);
+	public static Joystick stickL = new Joystick(0);
+	public static Joystick stickR = new Joystick(1);
+	public static Joystick gamepad = new Joystick(2);
 	
 	//Create Buttons
 	JoystickButton preset1		= new JoystickButton(gamepad, RobotMap.BTN_PRESET_1);
