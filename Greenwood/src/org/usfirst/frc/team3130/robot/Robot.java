@@ -19,8 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -30,7 +28,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		//Create instances of each class
-    	oi = new OI();
+    	OI.GetInstance();
 		Chassis.GetInstance();
 		
         chooser = new SendableChooser();

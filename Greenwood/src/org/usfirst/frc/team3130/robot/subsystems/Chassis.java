@@ -36,7 +36,6 @@ public class Chassis extends PIDSubsystem {
 	private static boolean m_bShiftedLow;
 	private static double moveSpeed;
 	private static double prevAbsBias;
-	private static boolean m_onPID;
 	private static boolean m_bNavXPresent;
 	
 	/* Wheel sprockets: 22
@@ -86,7 +85,6 @@ public class Chassis extends PIDSubsystem {
 		LiveWindow.addSensor("Chassis", "NavX", m_navX);
 		
 		
-		m_onPID = false;
 		moveSpeed = 0;
 		prevAbsBias = 0;
 	}
@@ -202,7 +200,6 @@ public class Chassis extends PIDSubsystem {
     public static void ReleaseAngle()
     {
     	GetInstance().getPIDController().disable();
-    	m_onPID = false;
     	prevAbsBias = 0;
     }
     
@@ -235,7 +232,6 @@ public class Chassis extends PIDSubsystem {
     	SetPIDValues();
     	GetInstance().getPIDController().setSetpoint(GetAngle() + angle);
     	GetInstance().getPIDController().enable();
-    	m_onPID = true;
     }
     
     public static void DriveStraight(double move) { moveSpeed = move; }
