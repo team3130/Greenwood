@@ -13,6 +13,9 @@ public class RobotMap {
 	//DIO Ports
 		//Prefix DIO_
 
+	//Relay
+		public static final int RLY_HEADLIGHT = 3;
+		
 	//Motors-PWM
 		//Prefix PWM_
 		

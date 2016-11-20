@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.*;
+import org.usfirst.frc.team3130.robot.commands.*;
 
 import org.usfirst.frc.team3130.robot.RobotMap;
 
@@ -56,13 +57,15 @@ public class OI {
 	public static JoystickButton shiftUp;
 	public static JoystickButton streight;
 	public static JoystickButton toPoint;
-	public static JoystickButton headlight;
+	public static JoystickButton headlightOn;
+	public static JoystickButton headlightOff;
 	public static POVTrigger CDFIntake;
 	public static POVTrigger inIntake;
 	public static POVTrigger intakeOut;
 	public static POVTrigger portcullisIntake;	
 
 	//Create Objects
+
 	
 	//Create Auton Inputs
 	public static enum Position{
@@ -92,13 +95,16 @@ public class OI {
 		shiftUp				= new JoystickButton(stickR, RobotMap.BTN_SHIFT);
 		streight			= new JoystickButton(stickR, 10);	//Secret Magic Buttons
 		toPoint				= new JoystickButton(stickL, 10);	//Secret Magic Buttons
-		headlight			= new JoystickButton(stickR, RobotMap.BTN_HEADLIGHT);
+		headlightOn			= new JoystickButton(stickR, RobotMap.BTN_HEADLIGHT);
+		headlightOff		= new JoystickButton(stickL, RobotMap.BTN_HEADLIGHT);
 		CDFIntake			= new POVTrigger(gamepad, RobotMap.POV_CDFMODE);
 		inIntake			= new POVTrigger(gamepad, RobotMap.POV_INTAKEIN);
 		intakeOut			= new POVTrigger(gamepad, RobotMap.POV_INTAKEOUT);
 		portcullisIntake	= new POVTrigger(gamepad, RobotMap.POV_PORTCULLISMODE);
 	
 		//Map Buttons to Objects
+		headlightOn.whenPressed(new HeadlightsOn());
+		headlightOff.whenPressed(new HeadlightsOff());
 	
 		//Set up Auton Choosers
 		positionChooser = new SendableChooser();

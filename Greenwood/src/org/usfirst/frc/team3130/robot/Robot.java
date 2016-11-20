@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 		//Create instances of each class
     	OI.GetInstance();
 		Chassis.GetInstance();
+		Headlights.GetInstance();
 		
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new DefaultDrive());
