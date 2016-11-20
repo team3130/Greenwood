@@ -103,6 +103,8 @@ public class OI {
 		portcullisIntake	= new POVTrigger(gamepad, RobotMap.POV_PORTCULLISMODE);
 	
 		//Map Buttons to Objects
+		shiftDown.whenPressed(new DriveShiftDown());
+		shiftUp.whenPressed(new DriveShiftUp());
 		headlightOn.whenPressed(new HeadlightsOn());
 		headlightOff.whenPressed(new HeadlightsOff());
 	

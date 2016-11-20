@@ -4,6 +4,7 @@ package org.usfirst.frc.team3130.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team3130.robot.*;
+import org.usfirst.frc.team3130.robot.commands.DefaultDrive;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -91,7 +92,7 @@ public class Chassis extends PIDSubsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DefaultDrive());
     }
     
     //Drive methods for the two forms of control used. Two of each type exist to allow a 2 arg call to default to non-squared inputs
