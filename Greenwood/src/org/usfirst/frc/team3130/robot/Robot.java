@@ -31,6 +31,8 @@ public class Robot extends IterativeRobot {
     	OI.GetInstance();
 		Chassis.GetInstance();
 		Headlights.GetInstance();
+		Catapult.GetInstance();
+		CatapultFire.GetInstance();
 		
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new DefaultDrive());
