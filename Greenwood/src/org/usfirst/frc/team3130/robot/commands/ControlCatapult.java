@@ -18,6 +18,7 @@ public class ControlCatapult extends Command {
 	private Timer timer;
 	
     public ControlCatapult() {
+    	timer = new Timer();
         requires(Catapult.GetInstance());
     }
 
