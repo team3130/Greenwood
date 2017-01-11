@@ -76,8 +76,8 @@ public class OI {
 		kLowBar, kMoat, kRamparts, kRoughTerrain, kRockWall
 	}
 	
-	public static SendableChooser positionChooser;
-	public static SendableChooser defenseChooser;
+	public static SendableChooser<Position> positionChooser;
+	public static SendableChooser<Defense> defenseChooser;
 	
 	private OI()
 	{
@@ -109,7 +109,7 @@ public class OI {
 		headlightOff.whenPressed(new HeadlightsOff());
 	
 		//Set up Auton Choosers
-		positionChooser = new SendableChooser();
+		positionChooser = new SendableChooser<Position>();
 		positionChooser.addDefault("Low Bar", Position.kLowBar);
 		positionChooser.addObject("Position 2", Position.kPos2);
 		positionChooser.addObject("Position 3", Position.kPos3);
@@ -117,7 +117,7 @@ public class OI {
 		positionChooser.addObject("Position 5", Position.kPos5);
 		SmartDashboard.putData("Auton Position", positionChooser);
 		
-		defenseChooser = new SendableChooser();
+		defenseChooser = new SendableChooser<Defense>();
 		defenseChooser.addDefault("Low Bar", Defense.kLowBar);
 		defenseChooser.addObject("Moat", Defense.kMoat);
 		defenseChooser.addObject("Ramparts", Defense.kRamparts);
