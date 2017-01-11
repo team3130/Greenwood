@@ -5,7 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team3130.robot.*;
 import org.usfirst.frc.team3130.robot.commands.DefaultDrive;
-
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;

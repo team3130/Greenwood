@@ -3,9 +3,9 @@ package org.usfirst.frc.team3130.robot.subsystems;
 import org.usfirst.frc.team3130.robot.RobotMap;
 import org.usfirst.frc.team3130.robot.commands.ControlCatapult;
 
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.*;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
