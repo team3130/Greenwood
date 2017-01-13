@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveShiftDown extends Command {
 
     public DriveShiftDown() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	//requires(Chassis.GetInstance());
     }
 
     // Called just before this Command runs the first time

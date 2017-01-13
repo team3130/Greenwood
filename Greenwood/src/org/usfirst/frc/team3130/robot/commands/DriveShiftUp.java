@@ -1,26 +1,55 @@
 package org.usfirst.frc.team3130.robot.commands;
 
+import org.usfirst.frc.team3130.robot.OI;
 import org.usfirst.frc.team3130.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  */
 public class DriveShiftUp extends Command {
-
+	
+	private Timer timer;
+	private double initThrottle;
+	private double startThrottle;
+	private boolean throttleNeg;
+	private double throttleConst;
+	private double moveSpeed;
+	
     public DriveShiftUp() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	timer = new Timer();
+        requires(Chassis.GetInstance());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.reset();
+    	timer.start();
     	Chassis.Shift(false);
+    	double initThrottle = -OI.stickL.getY();
+    	double startThrottle = initThrottle / 2.0;
+    	boolean throttleNeg = startThrottle < 0;
+    	double throttleConst = -0.1 / Math.log(startThrottle/2.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (throttleNeg) {
+    		moveSpeed = startThrottle - Math.exp(-timer.get()/throttleConst);
+    	}
+    	else {
+    		moveSpeed = startThrottle + Math.exp(-timer.get()/throttleConst);
+    	}
+		double turnSpeed = -OI.stickR.getX();
+		double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
+	
+		//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
+		Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
+		if (Math.abs(-OI.stickL.getY() - moveSpeed) < 0.05){
+			new DefaultDrive();
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -22,12 +22,20 @@ public class DefaultDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double moveSpeed = -OI.stickL.getY();
-    	double turnSpeed = -OI.stickR.getX();
-    	double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
+    	if(Math.abs(Chassis.GetSpeed()) > 3.5 && Chassis.GetShiftedDown()) {
+    		new DriveShiftUp();
+    	}
+    	else if (Math.abs(Chassis.GetSpeed()) < 2.5 && !Chassis.GetShiftedDown()) {
+    		new DriveShiftDown();
+    	}
+    	else {
+    		double moveSpeed = -OI.stickL.getY();
+    		double turnSpeed = -OI.stickR.getX();
+    		double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
     	
-    	//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
-    	Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
+    		//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
+    		Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
