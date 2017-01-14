@@ -27,7 +27,7 @@ public class DriveShiftUp extends Command {
     	timer.reset();
     	timer.start();
     	Chassis.TalonsToCoast(true);
-    	Chassis.DriveTank(0, 0);		//Cut all power to the motors so they aren't running during the shift
+    	//Chassis.DriveTank(0, 0);		//Cut all power to the motors so they aren't running during the shift
     }
 
     // Called repeatedly when this Command is scheduled to run
