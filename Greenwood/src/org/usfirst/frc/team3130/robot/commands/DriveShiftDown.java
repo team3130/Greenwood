@@ -58,6 +58,10 @@ public class DriveShiftDown extends Command {
     	Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
     	
     	Chassis.TalonsToCoast(false);	//Back to brake mode for normal robot operations
+    	
+    	//Set variables to default states for next execution of command
+    	m_bShifted = false;
+    	timer.stop();
     }
 
     // Called when another command which requires one or more of the same
