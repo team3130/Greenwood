@@ -27,13 +27,13 @@ public class DriveShiftUp extends Command {
     	timer.reset();
     	timer.start();
     	Chassis.TalonsToCoast(true);
-    	//Chassis.DriveTank(0, 0);		//Cut all power to the motors so they aren't running during the shift
+    	Chassis.DriveTank(0, 0);		//Cut all power to the motors so they aren't running during the shift
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//Execute the shift only once, and only at a certain delay after the motors have been stopped
-    	if(!m_bShifted && timer.get() > Preferences.getInstance().getDouble("Shift Dead Time STart", 0.125)){
+    	if(!m_bShifted && timer.get() > Preferences.getInstance().getDouble("Shift Dead Time Start", 0.125)){
     		Chassis.Shift(false);
     		m_bShifted = true;
     		//Reset the timer so that the ending dead time is from shifting rather than from the start.
@@ -50,15 +50,6 @@ public class DriveShiftUp extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//System for readding power to the motors the same as the standard drive system would
-    	double moveSpeed = -OI.stickL.getY();
-    	double turnSpeed = -OI.stickR.getX();
-    	double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
-    	//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
-    	Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);
-    	
-    	Chassis.TalonsToCoast(false);		//Back to brake mode for normal robot operations
-    	
     	//Set variables to default states for next execution of command
     	m_bShifted = false;
     	timer.stop();
