@@ -22,13 +22,12 @@ public class DefaultDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	new DriveShiftUp();
     	double speed = Chassis.GetSpeed();
     	if(speed != 0 && Math.abs(speed) > 3.5 ) {
-    		new DriveShiftUp();
+    		new DriveShiftUp().start();
     	}
     	else if (speed != 0 && Math.abs(speed) < 2.5) {
-    		new DriveShiftDown();
+    		new DriveShiftDown().start();
     	}
     	
     		double moveSpeed = -OI.stickL.getY();

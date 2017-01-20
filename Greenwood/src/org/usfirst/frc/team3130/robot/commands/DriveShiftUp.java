@@ -28,10 +28,10 @@ public class DriveShiftUp extends Command {
     	timer.reset();
     	timer.start();
     	Chassis.Shift(false);
-    	double initThrottle = -OI.stickL.getY();
-    	double startThrottle = initThrottle / 2.0;
-    	boolean throttleNeg = startThrottle < 0;
-    	double throttleConst = -0.1 / Math.log(startThrottle/2.0);
+    	initThrottle = -OI.stickL.getY();
+    	startThrottle = initThrottle / 2.0;
+    	throttleNeg = startThrottle < 0;
+    	throttleConst = -0.1 / Math.log(startThrottle/2.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,7 +54,7 @@ public class DriveShiftUp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
