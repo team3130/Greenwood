@@ -44,7 +44,7 @@ public class Chassis extends PIDSubsystem {
 	 * Wheel diameter: 7.625
 	 * Calibrating ratio: 0.955
 	 */
-	public static final double InchesPerRev = 0.995 * Math.PI * 7.625 * 15 / 22;
+	public static final double InchesPerRev = 0.995 * Math.PI * 7.625 * 15.0 / 22.0;
 	
 	
 	private Chassis()
@@ -82,7 +82,7 @@ public class Chassis extends PIDSubsystem {
 		LiveWindow.addActuator("Chassis", "Left Rear TalonSRX", m_leftMotorRear);
 		LiveWindow.addActuator("Chassis", "Right Front TalonSRX", m_rightMotorFront);
 		LiveWindow.addActuator("Chassis", "Right Rear TalonSRX", m_rightMotorRear);
-		
+
 		LiveWindow.addSensor("Chassis", "NavX", m_navX);
 		
 		
@@ -126,12 +126,13 @@ public class Chassis extends PIDSubsystem {
 
     public static double GetSpeedL()
     {
-    	return m_leftMotorFront.getSpeed() * InchesPerRev / 50.0;
+    	System.out.println(m_leftMotorFront.getSpeed() * InchesPerRev);
+    	return m_leftMotorFront.getSpeed() * InchesPerRev;
     }
     
     public static double GetSpeedR()
     {
-    	return m_rightMotorFront.getSpeed() * InchesPerRev / 50.0;	
+    	return m_rightMotorFront.getSpeed() * InchesPerRev;	
     }
     
     public static double GetSpeed()
