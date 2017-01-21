@@ -46,6 +46,9 @@ public class Chassis extends PIDSubsystem {
 	 */
 	public static final double InchesPerRev = 0.995 * Math.PI * 7.625 * 15.0 / 22.0;
 	
+	//used to convert GetSpeed into ft/s...theoretically
+	public static final double toFtConstant = 0.037583;
+	
 	
 	private Chassis()
 	{
@@ -127,18 +130,18 @@ public class Chassis extends PIDSubsystem {
     public static double GetSpeedL()
     {
     	System.out.println(m_leftMotorFront.getSpeed() * InchesPerRev);
-    	return m_leftMotorFront.getSpeed() * InchesPerRev;
+    	return m_leftMotorFront.getSpeed() * InchesPerRev / toFtConstant;
     }
     
     public static double GetSpeedR()
     {
-    	return m_rightMotorFront.getSpeed() * InchesPerRev;	
+    	return m_rightMotorFront.getSpeed() * InchesPerRev / toFtConstant;	
     }
     
     public static double GetSpeed()
     {
     	//The right encoder is nonfunctional, just use the left speed.
-    	//return (GetSpeedL() + GetSpeedR())/2.0;
+    	//return (GetSpeedL() + GetSpeedR())/2.0;]
     	return GetSpeedL();
     }
     
