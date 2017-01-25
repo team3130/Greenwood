@@ -17,7 +17,7 @@ public class DriveShiftUp extends Command {
 	private boolean throttleNeg;
 	private double throttleConst;
 	private double moveSpeed;
-	DefaultDrive drive = new DefaultDrive();
+	
 	
     public DriveShiftUp() {
     	timer = new Timer();
@@ -52,7 +52,6 @@ public class DriveShiftUp extends Command {
 		if (Math.abs(-OI.stickL.getY() - moveSpeed) < 0.05){
 			drive.start();
 		}*/
-    	drive.start();
     }
 
     // Make this return true when this Command no longer needs to run execute()

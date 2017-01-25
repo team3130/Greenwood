@@ -11,6 +11,8 @@ import org.usfirst.frc.team3130.robot.subsystems.Chassis;
  */
 public class DefaultDrive extends Command {
 
+	
+	
     public DefaultDrive() {
         requires(Chassis.GetInstance());
     }
@@ -22,20 +24,22 @@ public class DefaultDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = Chassis.GetSpeed();
-    	System.out.println(speed);
-    	if(speed != 0 && Math.abs(speed) > 3.5 && Chassis.GetShiftedDown()) {
+    	/*double speed = Chassis.GetSpeed() / Chassis.toFtConstant;
+    	System.out.println(speed);*/
+    	double moveSpeed = -OI.stickL.getY();
+		double turnSpeed = -OI.stickR.getX();
+		double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
+		
+    	if(Math.abs(moveSpeed) >= 0.75 && Chassis.GetShiftedDown()) {
     		
-    		new DriveShiftUp().start();
+    		Chassis.up.start();
     	}
-    	else if (speed != 0 && Math.abs(speed) < 2.5 && !Chassis.GetShiftedDown()) {
+    	else if (Math.abs(moveSpeed) < 0.75 && !Chassis.GetShiftedDown()) {
     		
-    		new DriveShiftDown().start();
+    		Chassis.down.start();
     	}
     	
-    		double moveSpeed = -OI.stickL.getY();
-    		double turnSpeed = -OI.stickR.getX();
-    		double turnThrottle = (-0.5 * OI.stickR.getRawAxis(3)) + 0.5;
+    		
     	
     		//Explicitly turning on Quadratic inputs for drivers, as all other systems will use nonQuadratic
     		Chassis.DriveArcade(moveSpeed, turnSpeed * turnThrottle, true);

@@ -5,7 +5,11 @@ import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team3130.robot.*;
 import org.usfirst.frc.team3130.robot.commands.DefaultDrive;
+import org.usfirst.frc.team3130.robot.commands.DriveShiftDown;
+import org.usfirst.frc.team3130.robot.commands.DriveShiftUp;
+
 import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -38,6 +42,10 @@ public class Chassis extends PIDSubsystem {
 	private static double moveSpeed;
 	private static double prevAbsBias;
 	private static boolean m_bNavXPresent;
+	
+	//commands so that they don't have to be created over and over
+	public static DriveShiftDown down = new DriveShiftDown();
+	public static DriveShiftUp up = new DriveShiftUp();
 	
 	/* Wheel sprockets: 22
 	 * Encoder shaft sprockets: 15
@@ -129,13 +137,12 @@ public class Chassis extends PIDSubsystem {
 
     public static double GetSpeedL()
     {
-    	System.out.println(m_leftMotorFront.getSpeed() * InchesPerRev);
-    	return m_leftMotorFront.getSpeed() * InchesPerRev / toFtConstant;
+    	return m_leftMotorFront.getSpeed() * InchesPerRev;
     }
     
     public static double GetSpeedR()
     {
-    	return m_rightMotorFront.getSpeed() * InchesPerRev / toFtConstant;	
+    	return m_rightMotorFront.getSpeed() * InchesPerRev;	
     }
     
     public static double GetSpeed()
