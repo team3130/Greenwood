@@ -247,5 +247,13 @@ public class Chassis extends PIDSubsystem {
     }
     
     public static void DriveStraight(double move) { moveSpeed = move; }
+    
+    public static void TalonsToCoast(boolean coast)
+    {
+    	m_leftMotorFront.enableBrakeMode(!coast);
+    	m_leftMotorRear.enableBrakeMode(!coast);
+    	m_rightMotorFront.enableBrakeMode(!coast);
+    	m_rightMotorRear.enableBrakeMode(!coast);
+    }
 }
 
